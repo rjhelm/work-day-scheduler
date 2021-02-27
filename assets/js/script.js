@@ -85,11 +85,11 @@ $(document).ready(function () {
     ];
     // for loop in place to create rows based on times in array
   for (var i = 0; i < workHours.length; i++) {
-      let useWorkHour = [i + 9];
+      let dataHour = [i + 9];
       let timeRow = $('<tr class="rowColor">');
-      let hourRow = $('<td class="align-middle"><h3 class="time" id="${hours[i]}" use-work-hour="${useWorkHour}">${hours[i]}</h3><td>');
-      let task = $('<td class="align-middle"><textarea class="form-control taskText" id="${useWorkHour}text" rows="3"></textarea></td>');
-      let save = $('<td class="align-middle"><i class="far fa-save fa-3x saveBtn" use-work-hour="${useWorkHour}"></i></td>');
+      let hourRow = $('<td class="align-middle"><h3 class="time" id="${hours[i]}" data-hour="${dataHour}">${workHours[i]}</h3><td>');
+      let task = $('<td class="align-middle"><textarea class="form-control taskText" id="${dataHour}text" rows="3"></textarea></td>');
+      let save = $('<td class="align-middle"><i class="far fa-save fa-3x saveBtn" data-hour="${dataHour}"></i></td>');
       timeRow.append(hourRow, task, save);
       $('tbody').append(timeRow);  
     }

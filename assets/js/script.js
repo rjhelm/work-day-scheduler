@@ -66,7 +66,8 @@
 $(document).ready(function () {
   let setTime = moment().hour();
   let keepTime = function () {
-      $('#currentDay').text(moment().format('MMMM Do YYYY, h:mm A'));
+      $('#currentDay').text(moment().format('MMMM Do YYYY'));
+      $('#currentHour').text(moment().format('hh:mm A'));
   };
   setTime();
   setInterval(update, 1000);
@@ -109,5 +110,16 @@ $(document).ready(function () {
         };
         localStorage.setItem(task.hour, task.message);
     });
-    
+        // color the rows based on time of day, using past, present, or future
+        for (let j = 9; j < 18; j++) {
+            if (currentHour > j) {
+                $('.rowColor').eq(j-9).css('background-color', '#d3d3d3');
+            }
+            if (currentHour === j) {
+                $('.rowColor').eq(j-9).css('background-color', '#ff6961');
+            }
+            if (currentHour < j) {
+                $('.rowColor').eq(j-9).css('background-color', '#77dd77');
+            }
+        }
 });

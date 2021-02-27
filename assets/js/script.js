@@ -50,3 +50,15 @@ workday.forEach(function (timeBlock, index) {
   $(".container").append(row);
 });
 
+// add colors to the rows we created based on the time
+function rowColors(time) {
+  let currentEvent = moment(now, "H A");
+  let userEvent = moment(time, "H A");
+  if (currentEvent.isBefore(userEvent) === true) {
+    return "future";
+  } else if (currentEvent.isAfter(userEvent) === true) {
+    return "past";
+  } else {
+    return "present";
+  }
+}

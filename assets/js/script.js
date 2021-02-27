@@ -33,5 +33,20 @@ if (daysEvents) {
   workday = daysEvents;
 }
 
-
+// creates the rows in html and gives layout once on the page
+workday.forEach(function (timeBlock, index) {
+  let timeDefine = timeBlock.time;
+  let timeColor = rowColors(timeDefine);
+  let row =
+    '<div class="time-block" id="' +
+    index +
+    '"><div class="row no-gutters input-group"><div class="col-sm col-lg-1 input-group-prepend hour justify-content-sm-end pr-3 pt-3">' +
+    timeDefine +
+    '</div><textarea class="form-control ' +
+    timeColor +
+    '">' +
+    timeBlock.event +
+    '</textarea><div class="col-sm col-lg-1 input-group-append"><button class="saveBtn btn-block" type="submit"><i class="fas fa-save"></i></button></div></div></div>';
+  $(".container").append(row);
+});
 

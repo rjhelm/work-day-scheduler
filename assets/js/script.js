@@ -1,11 +1,3 @@
-// Save the event entered by user
-$(".saveBtn").on("click", function () {
-  let eventID = parseInt($(this).closest(".time-block").attr("id"));
-  let userTask = $.trim($(this).parent().siblings("textarea").val());
-  workday[blockID].event = userTask;
-  localStorage.setItem("workToday", JSON.stringify(workday));
-});
-
 // Variables used by moment.js
 let now = moment().format("H A");
 let today = moment().format("MMMM Do YYYY, h:mm:ss a");
@@ -21,7 +13,6 @@ let workday = [
   { time: "3pm", event: "" },
   { time: "4pm", event: "" },
   { time: "5pm", event: "" },
-  { time: "6pm", event: "" },
 ];
 
 // Current Day Variable
@@ -62,3 +53,11 @@ function rowColors(time) {
     return "present";
   }
 }
+// Save the event entered by user
+$(".saveBtn").on("click", function () {
+  let blockID = parseInt($(this).closest(".time-block").attr("id"));
+  let userTask = $.trim($(this).parent().siblings("textarea").val());
+  workday[blockID].event = userTask;
+  localStorage.setItem("workToday", JSON.stringify(workday));
+});
+

@@ -61,6 +61,8 @@
   //localStorage.setItem("workToday", JSON.stringify(workday));
 //});
 
+
+// Display current time and ready document
 $(document).ready(function () {
   let setTime = moment().hour();
   let keepTime = function () {
@@ -68,7 +70,7 @@ $(document).ready(function () {
   };
   setTime();
   setInterval(update, 1000);
-
+  // array for scheduler
   let workHours = [
     "9:00 AM",
     "10:00 AM",
@@ -80,7 +82,7 @@ $(document).ready(function () {
     "4:00 PM",
     "5:00 PM",
     ];
-
+    // for loop in place to create rows based on times in array
   for (var i = 0; i < workHours.length; i++) {
       let useWorkHour = [i + 9];
       let timeRow = $('<tr class="rowColor">');
@@ -90,11 +92,22 @@ $(document).ready(function () {
       timeRow.append(hourRow, task, save);
       $('tbody').append(timeRow);  
     }
+    // adds data entered by user to the local storage -- as well as indexing in the html file and assigning local storage value
     init();
     function init() {
         for (let k = 9; k < 18; k++) {
             $('#' + k + 'text').val(localStorage.getItem(k));
         }
     }
+    // save button event listener
+    $('.saveBtn').click(function (e) {
+        e.preventDefault();
+        let id = $(this).data('hour');
+        let task = {
+            hour: $(this).data('hour'),
+            message: $('#' + id + 'text').val(),
+        };
+        localStorage.setItem(task.hour, task.message);
+    });
     
 });
